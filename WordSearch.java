@@ -85,7 +85,7 @@ public class WordSearch {
     	    	randomColumn = randgen.nextInt(cols);
     	    	rowIncrement = randgen.nextInt(3) - 1;
     	    	colIncrement = randgen.nextInt(3) - 1;
-	    		if (addWordRandom(word, randomRow, randomColumn, rowIncrement, colIncrement)) {
+	    		if (addWord(word, randomRow, randomColumn, rowIncrement, colIncrement)) {
 		    		    wordsToAdd.remove(indexUsed);
 		    		    wordsAdded.add(word);
 		    		    wordAddedflag = true;
@@ -95,7 +95,7 @@ public class WordSearch {
     	    }
     	}
     }
-    private boolean addWordRandom(String word,int row, int col, int rowIncrement, int colIncrement) {
+    private boolean addWord (String word,int row, int col, int rowIncrement, int colIncrement) {
     	if (data.length - col >= word.length() && data.length - row >= word.length() && spaceAvailable(word, row, col, rowIncrement, colIncrement)) {
     	    for (int i = 0; i < word.length(); i++) {
     	    	data[row + i * rowIncrement][col + i * colIncrement] = word.charAt(i);
