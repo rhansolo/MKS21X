@@ -25,10 +25,10 @@ public class WordSearch {
              }   
 		 clear();
 		 if (ansKey){		     
-		     fillWithWords();
+		     fillAllWords();
 		 }
 		 else{
-		     fillWithWords();
+		     fillAllWords();
 		     fillUpRest();
 		 }
     	} catch (IOException e){
@@ -72,7 +72,7 @@ public class WordSearch {
 		return output;
     }
 
-    private void fillWithWords() {
+    private void fillAllWords() {
 	//randomize words to add. 
     	for (int i = 0; i < wordsToAdd.size(); i++) {
     		int indexUsed = randgen.nextInt(wordsToAdd.size());
