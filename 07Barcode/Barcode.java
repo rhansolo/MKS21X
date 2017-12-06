@@ -1,36 +1,43 @@
+import java.io.*;
 public class Barcode{
-    String barcode = "";
+    String zip = "";
     String[] numToSymbol = new String[]{"||:::",":::||","::|:|","::||:",":|::|",":|:|:",":||::","|:::|","|::|:","|:|::"};
     public Barcode(String barString){
-	barcode = barString;
+	if (barString.length()!=5){
+	    throw new IllegalArgumentException();
+	}
+	zip = barString;
     }
     public String getCode(){
-	return "|"+ codeToZip()+ getCheckDigit()+  "|";
+	return "|"+ toCode(zip+getCheckDigit())+  "|";
     }
     public String getZip(){
-	return barcode + getCheckDigit();
+	return zip;
     }
     public boolean equals(Barcode otherBarCode){
-	return this.barcode.equals(otherBarCode.barcode);
+	return this.zip.equals(otherBarCode.zip);
     }
     public int compareTo(Barcode otherBarCode){
-	return this.barcode.compareTo(otherBarCode.barcode);
+	return this.zip.compareTo(otherBarCode.zip);
     }
-    private String codeToZip(){
+    public String toCode(String zip){
 	String finalcode = "";
-	for (int i = 0; i < barcode.length(); i++){
-	   finalcode += numToSymbol[barcode.charAt(i)];
+	for (int i = 0; i < zip.length(); i++){
+	   finalcode += numToSymbol[zip.charAt(i)-48];
 	}
 	return finalcode;
     }
+    public String toZip(String code){
+	return "Awefawef";
+    }
     private int  getCheckDigit(){
 	int total = 0;
-	for (int i = 0; i < barcode.length(); i++){
-	    total += barcode.charAt(i)-48;
+	for (int i = 0; i < zip.length(); i++){
+	    total += zip.charAt(i)-48;
 	}
 	return (total%10);
     }
     public String toString(){
-	return "|"+ getCode() + "| (" + getZip() + getCheckDigit()+ ")";
+	return "|"+ getCode() + "| (" + getZip() + ")";
     }
 }
