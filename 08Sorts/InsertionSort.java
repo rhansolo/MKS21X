@@ -19,7 +19,7 @@ public class InsertionSort{
     public String toString(){
 	String finalOutput = "";
 	for (int i = 0; i < arr.length; i++){
-	    finalOutput += 
+	    finalOutput += arr[i];
 	}
     }
 }
