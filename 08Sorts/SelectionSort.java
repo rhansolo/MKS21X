@@ -22,7 +22,7 @@ public class SelectionSort{
     public String toString(){
 	String output = "";
 	for (int i = 0; i < arr.length; i++){
-	    output += arr[i];
+	    output += arr[i] + " ";
 	}
 	return output;
     }
