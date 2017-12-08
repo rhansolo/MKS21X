@@ -1,0 +1,41 @@
+import java.io.*;
+public class Barcode{
+    String zip = "";
+    String[] numToSymbol = new String[]{"||:::",":::||","::|:|","::||:",":|::|",":|:|:",":||::","|:::|","|::|:","|:|::"};
+    public Barcode(String zip){
+	if (zip.length() != 5){
+	    throw new IllegalArgumentException();
+	}
+	this.zip = zip;
+    }
+    public String getCode(){
+	return "|"+ codeToZip()+ getCheckDigit()+  "|";
+    }
+    public String getZip(){
+	return zip + getCheckDigit();
+    }
+    public boolean equals(Barcode otherBarCode){
+	return this.zip.equals(otherBarCode.zip);
+    }
+    public int compareTo(Barcode otherBarCode){
+	return this.zip.compareTo(otherBarCode.zip);
+    }
+    private String codeToZip(){
+	String finalcode = "";
+	System.out.println(zip);
+	for (int i = 0; i < zip.length(); i++){
+	   finalcode += numToSymbol[zip.charAt(i)];
+	}
+	return finalcode;
+    }
+    private int  getCheckDigit(){
+	int total = 0;
+	for (int i = 0; i < zip.length(); i++){
+	    total += zip.charAt(i)-48;
+	}
+	return (total%10);
+    }
+    public String toString(){
+	return "|"+ getCode() + "| (" + getZip() ")";
+    }
+}
