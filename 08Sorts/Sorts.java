@@ -31,16 +31,26 @@ public class Sorts{
 	}
    
     }
+    public static void bubbleSort(int[] arr){
+	for (int i = 0; i < arr.length-1; i ++){
+	    for (int j = 0; j < arr.length-i-1; j++){
+		if (arr[j] > arr[j+1]){
+		    int tmp = arr[j+1];
+		    arr[j+1] = arr[j];
+		    arr[j] = tmp;
+		}
+	    }
+	}
+     
+    }
    
     public static void main(String[] args){
-	int[] randish = new int[15];
-	for(int i = 0; i < randish.length;i++){
-	    randish[i] = (int)(Math.random()*100);
-	}
+	int[] randish = new int[]{5,3,2,4,8,7,3,4,7,2,4,6};
+	int[] tmp = randish;
 	System.out.println(Arrays.toString(randish));
 	selectionSort(randish);
 	System.out.println(Arrays.toString(randish));
-	insertionSort(randish);
-	System.out.println(Arrays.toString(randish));
+	bubbleSort(tmp);
+	System.out.println(Arrays.toString(tmp));
     }
 }
