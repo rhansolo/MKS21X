@@ -1,7 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.events.*;
-public class TemperatureWindow extends JFrame {
+import java.awt.event.*;
+import java.util.*;
+public class TemperatureWindow extends JFrame implements ActionListener {
  private Container pane;
 
  private JButton b;
@@ -12,7 +13,7 @@ public class TemperatureWindow extends JFrame {
   //CONSTRUCTOR SETS EVERYTHING UP
   public TemperatureWindow() {
      this.setTitle("Temperature Converter!");
-     this.setSize(600,400);
+     this.setSize(700,200);
      this.setLocation(100,100);
      this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     
@@ -20,12 +21,15 @@ public class TemperatureWindow extends JFrame {
      pane.setLayout(new FlowLayout());  //NOTE!! THIS CAN BE CHANGED (see below)
     
      b = new JButton("Convert!");
-     b.addActionListerner(this);
+     b.addActionListener(this);
      t = new JTextField(12);
-     c = new JRadioButton("Cel to Far");
-     c.addActionListerner(this);
-     f = new JRadioButton("Far to cel");
-     c.addActionListerner(this);
+     c = new JRadioButton("Celsius to Fahrenheit");
+     c.addActionListener(this);
+     f = new JRadioButton("Fahrenheit to Celsius");
+     c.addActionListener(this);
+     ButtonGroup group = new ButtonGroup();
+     group.add(c);
+     group.add(f);
      pane.add(b);
      pane.add(t);
      pane.add(c);
@@ -33,14 +37,20 @@ public class TemperatureWindow extends JFrame {
  }
 
     public void actionPerformed(ActionEvent e){
-	String temp = e.getActionCommand();
-        if (c.isSelected()){
-	    t.setText(cToF(Double.parseDouble(temp)));
-	}
+	String s = e.getActionCommand();
+	if (s.equals("Convert!")){
+		if (c.isSelected()){
+		    t.setText(Double.toString(CtoF(Double.parseDouble(t.getText()))));
+		}
+		else if (f.isSelected()){
+		    t.setText(Double.toString(FtoC(Double.parseDouble(t.getText()))));
+		}
+	    }
 	
     }
     public static double CtoF(double cel){
 	return (9.0/5 * cel) + 32;
+	
     }
     public static double FtoC(double far){
 	return (far-32.0) * 5.0 / 9;
