@@ -4,15 +4,14 @@ public class Sorts{
 	return "09.Robin.Han";
     }
     public static void insertionSort(int[] arr){
-	for(int i = 0; i < arr.length-1; i ++){
-	    if (arr[i+1] < arr[i]){
-		int j = i;
-	        while(j >= 0 && arr[j] > arr[i]){
+	for(int i = 1; i < arr.length; ++i){
+	    int tmp = arr[i];
+	    int j = i-1;
+	        while(j >= 0 && arr[j] > tmp){
 		    arr[j+1] = arr[j];
 		    j --;
 		}
-		arr[j+1] = arr[i];
-	}
+		arr[j+1] = tmp;
 	}
     }
     public static void selectionSort(int[] arr){
@@ -48,9 +47,9 @@ public class Sorts{
 	int[] randish = new int[]{5,3,2,4,8,7,3,4,7,2,4,6};
 	int[] tmp = randish;
 	System.out.println(Arrays.toString(randish));
-	selectionSort(randish);
+	insertionSort(randish);
 	System.out.println(Arrays.toString(randish));
-	bubbleSort(tmp);
-	System.out.println(Arrays.toString(tmp));
+	//bubbleSort(tmp);
+	//System.out.println(Arrays.toString(tmp));
     }
 }
