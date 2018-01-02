@@ -12,10 +12,6 @@ public class SuperArray{
     	arrSize = 0;
     }
     
-    private void printError(){
-    	System.out.println("Error");
-    }
-    
     public int size(){
     	return arrSize;
     }
@@ -32,15 +28,13 @@ public class SuperArray{
     }
     public String get(int index){
     	if (index < 0 || index > size()){
-    		printError();
-    		return null;
+    		throw new IndexOutOfBoundsException();
     	}
     	return arr[index];
     }
     public String set(int index, String element){
     	if (index < 0 || index > size()){
-    		printError();
-    		return null;
+	    throw new IndexOutOfBoundsException();
     	}
     	String tmp = arr[index];
     	arr[index] = element;
@@ -75,8 +69,7 @@ public class SuperArray{
     }
     public void add(int index, String element){
     	if (index < 0 || index > size()){
-    		printError();
-    		return;
+	    throw new IndexOutOfBoundsException();
     	}
     	if (arrSize == arr.length){
 		    resize();
@@ -112,8 +105,7 @@ public class SuperArray{
     }
     public String remove(int index){
     	if (index < 0 || index > size()){
-    		printError();
-    		return null;
+	    throw new IndexOutOfBoundsException();
     	}
     	String removed = arr[index];
     	String[] tmpArr = new String[arrSize];
