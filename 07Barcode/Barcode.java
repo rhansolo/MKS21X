@@ -43,7 +43,7 @@ public class Barcode{
 	for (int i = 0; i < zip.length(); i++){
 	    finalcode += convertToSymbol(zip.charAt(i)-48);
 	}
-       
+	finalcode += convertToSymbol(zip.charAt(getCheckDigit(zip))-48);
 	return finalcode;
     }
     public static String toZip(String code){
@@ -85,5 +85,5 @@ public class Barcode{
     }
     public String toString(){
 	return "|"+ getCode() + "| (" + getZip() + ")";
-    }
+   }
 }
