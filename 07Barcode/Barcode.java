@@ -19,12 +19,14 @@ public class Barcode{
     }
     private static int convertToNum(String code){
 	String[] codeArr = {"||:::",":::||","::|:|","::||:",":|::|",":|:|:",":||::","|:::|","|::|:","|:|::"};
+	//	System.out.println(code);
 	for (int i = 0; i < codeArr.length; i++){
 	    if (codeArr[i].equals(code)){
 		    return i;
 		}
 	}
-	    throw new IllegalArgumentException();
+	//System.out.println("no " + code);
+	    throw new IllegalArgumentException("contains non-barcode characters");
     }
     public String getCode(){
 	return "|"+ toCode(zip + getCheckDigit(zip))+  "|";
@@ -33,17 +35,25 @@ public class Barcode{
 	return zip;
     }
     public boolean equals(Barcode otherBarCode){
-	return this.zip.equals(otherBarCode.zip);
+	return getZip().equals(otherBarCode.zip);
     }
     public int compareTo(Barcode otherBarCode){
-	return this.zip.compareTo(otherBarCode.zip);
+	return Integer.parseInt(this.getZip())- Integer.parseInt(otherBarCode.getZip());
     }
     public static String toCode(String zip){
-	String finalcode = "";
+	if (zip.length()!= 5){
+	    throw new IllegalArgumentException("not right length");
+	}
+	for (int i = 0; i < zip.length();i++){
+	    if (!Character.isDigit(zip.charAt(i))){
+		throw new IllegalArgumentException("must contain digits!");
+	    }
+	}
+	String finalcode = "|";
 	for (int i = 0; i < zip.length(); i++){
 	    finalcode += convertToSymbol(zip.charAt(i)-48);
 	}
-	finalcode += convertToSymbol(zip.charAt(getCheckDigit(zip))-48);
+	finalcode += convertToSymbol((getCheckDigit(zip)))+"|";
 	return finalcode;
     }
     public static String toZip(String code){
@@ -51,7 +61,7 @@ public class Barcode{
 	if (code.length() != 32){
 	    throw new IllegalArgumentException("Check the code length!");
 	}
-	if (code.charAt(0) != '|' && code.charAt(code.length()-1) != '|'){
+	if (code.charAt(0) != '|' || code.charAt(code.length()-1) != '|'){
 	    throw new IllegalArgumentException("invalid sequence in code. Check beginning and end");
 	}
 
@@ -68,13 +78,19 @@ public class Barcode{
 	    }
 	    finalZip += convertToNum(code.substring(i,i+5));
 	    }
-
+	if (getCheckDigit(finalZip)!=convertToNum(code.substring(26,31))){
+	    throw new IllegalArgumentException("checksum is not correct");
+	}
+	return finalZip;
+	/*
+	try{
 	if (getCheckDigit(finalZip)==convertToNum(code.substring(26,31))){
 	    return finalZip;
 		}
-
-	throw new IllegalArgumentException("Code is invalid, check digit doesn't match");
-
+	}
+	catch (IllegalArgumentException e){
+	    throw new IllegalArgumentException("Code is invalid, check digit doesn't match");
+	  } */
     }
     private static int getCheckDigit(String zip){
 	int total = 0;
@@ -84,6 +100,6 @@ public class Barcode{
 	return (total%10);
     }
     public String toString(){
-	return "|"+ getCode() + "| (" + getZip() + ")";
+	return getCode() + " (" + getZip() + ")";
    }
 }
