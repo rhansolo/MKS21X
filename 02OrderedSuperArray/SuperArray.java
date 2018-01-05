@@ -6,6 +6,9 @@ public class SuperArray{
     public SuperArray(){
     	arr = new String[10];
     }
+    public SuperArray(int capacity){
+	arr = new String[capacity];
+    }
     
     public void clear(){
     	arr = new String[10];
@@ -95,13 +98,12 @@ public class SuperArray{
     	return -1;
     }
     public int lastIndexOf(String element){
-    	int lastOccur = -1;
-    	for (int i = 0; i < arrSize; i ++){
+    	for (int i = arrSize - 1; i >= 0; i --){
     		if (arr[i].equals(element)){
-    			lastOccur = i;
+    			return i;
     		}
     	}
-    	return lastOccur;
+    	return -1;
     }
     public String remove(int index){
     	if (index < 0 || index > size()){

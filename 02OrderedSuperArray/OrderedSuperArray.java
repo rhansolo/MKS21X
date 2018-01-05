@@ -5,8 +5,13 @@ public class OrderedSuperArray extends SuperArray{
     public OrderedSuperArray(int capacity){
     	super(capacity);
     }
-    public OrderedSuperArray(String[] ary){
-    	super(ary);
+    public OrderedSuperArray(String[] arr){
+    	super(arr.length);
+
+	for (int j = 0; j < arr.length; j++){
+	    add(arr[j]);
+	}
+	
     }
 
     public int indexOfBinary(String element){
@@ -101,7 +106,7 @@ public class OrderedSuperArray extends SuperArray{
 		}
 		else{
 			//System.out.println("insert index" + findIndexBinary(value));
-		    super.add(findIndexBinary(value),value);
+		    super.add(this.findIndexBinary(value),value);
 			return true;
 		}
 		
