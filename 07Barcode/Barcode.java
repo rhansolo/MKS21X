@@ -29,7 +29,7 @@ public class Barcode{
 	    throw new IllegalArgumentException("contains non-barcode characters");
     }
     public String getCode(){
-	return "|"+ toCode(zip + getCheckDigit(zip))+  "|";
+	return "|"+ toCode(zip) +convertToSymbol(getCheckDigit(zip))+  "|";
     }
     public String getZip(){
 	return zip;
@@ -49,11 +49,11 @@ public class Barcode{
 		throw new IllegalArgumentException("must contain digits!");
 	    }
 	}
-	String finalcode = "|";
+	String finalcode = "";
 	for (int i = 0; i < zip.length(); i++){
 	    finalcode += convertToSymbol(zip.charAt(i)-48);
 	}
-	finalcode += convertToSymbol((getCheckDigit(zip)))+"|";
+	finalcode += convertToSymbol((getCheckDigit(zip)));
 	return finalcode;
     }
     public static String toZip(String code){
