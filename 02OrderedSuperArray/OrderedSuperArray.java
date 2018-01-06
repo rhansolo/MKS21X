@@ -13,6 +13,9 @@ public class OrderedSuperArray extends SuperArray{
 	}
 	
     }
+    public String set(int index, String element){
+	throw new UnsupportedOperationException();
+    }
 
     public int indexOfBinary(String element){
     	//System.out.println(element);
@@ -100,12 +103,11 @@ public class OrderedSuperArray extends SuperArray{
     	add(value);
     }
     public boolean add(String value){
-		if (size() == 0){
+		if (this.size() == 0){
 		    super.add(value);
 		    return true;
 		}
 		else{
-			//System.out.println("insert index" + findIndexBinary(value));
 		    super.add(this.findIndexBinary(value),value);
 			return true;
 		}

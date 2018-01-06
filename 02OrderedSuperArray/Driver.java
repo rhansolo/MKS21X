@@ -94,9 +94,7 @@ public static void runTest02(int testID){
 		  if(equals(s1,s2)){
 		    System.out.println("Test "+testID+",PASS");
 		  }else{
-		    System.out.println("Test "+testID+",FAIL!");// "+s1+"!="+s2);
-			System.out.println(s1);
-	System.out.println(s2);
+		    System.out.println("Test "+testID+",FAIL!");// "+s1+"!="+s2)
 		  }
 		}
 
@@ -106,6 +104,8 @@ public static void runTest02(int testID){
 		    if(s.size() == a.size()){
 		      for(int i = 0; i < s.size(); i++){
 		        if(s.get(i) != a.get(i)){
+				System.out.println("." + s.get(i) + ".");
+				System.out.println("."+ a.get(i)+".");
 		          return false;
 		        }
 		      }
