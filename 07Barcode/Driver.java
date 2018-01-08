@@ -1,13 +1,13 @@
 public class Driver{
     public static void main(String[] args){
-    Barcode a = new Barcode("11245");
+    	    Barcode a = new Barcode("11245");
     Barcode b = new Barcode("38760");
     Barcode c = new Barcode("11245");
     Barcode d = new Barcode("00294");
 
     System.out.println(a.getZip());//11245
     System.out.println(d.getZip());//00234
-    System.out.println(a.getCode());// |:::||:::||::|:|:|::|:|:|:::||:|
+    System.out.println(a.getCode());//  |:::||:::||::|:|:|::|:|:|:::||:|
     System.out.println(a.toString());// |:::||:::||::|:|:|::|:|:|:::||:| (11245)
     System.out.println(b);// |::||:|::|:|:::|:||::||::::|::|| (38760)
     System.out.println(c);// |:::||:::||::|:|:|::|:|:|:::||:| (11245)
@@ -18,5 +18,5 @@ public class Driver{
     System.out.println(a.equals(b));// false
     System.out.println(a.equals(c));// true
     System.out.println(a.equals(d));// false
-    }
+}
 }

@@ -53,7 +53,6 @@ public class Barcode{
 	for (int i = 0; i < zip.length(); i++){
 	    finalcode += convertToSymbol(zip.charAt(i)-48);
 	}
-	finalcode += convertToSymbol((getCheckDigit(zip)));
 	return finalcode;
     }
     public static String toZip(String code){
@@ -61,8 +60,8 @@ public class Barcode{
 	if (code.length() != 32){
 	    throw new IllegalArgumentException("Check the code length!");
 	}
-	if (code.charAt(0) != '|' || code.charAt(code.length()-1) != '|'){
-	    throw new IllegalArgumentException("invalid sequence in code. Check beginning and end");
+	if (code.charAt(0) != '|' || code.charAt(31) != '|'){
+	    throw new IllegalArgumentException("end or beginning is wrong. Check beginning and end");
 	}
 
 	for (int i = 0; i < code.length(); i++){
